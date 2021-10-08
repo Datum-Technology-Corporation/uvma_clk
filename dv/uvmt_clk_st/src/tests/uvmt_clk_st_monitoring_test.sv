@@ -10,39 +10,45 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-`ifndef __UVMT_CLK_ST_SANITY_TEST_SV__
-`define __UVMT_CLK_ST_SANITY_TEST_SV__
+`ifndef __UVMT_CLK_ST_MONITORING_TEST_SV__
+`define __UVMT_CLK_ST_MONITORING_TEST_SV__
 
 
 /**
- * TODO Describe uvmt_clk_st_sanity_test_c
+ * TODO Describe uvmt_clk_st_monitoring_test_c
  */
-class uvmt_clk_st_sanity_test_c extends uvmt_clk_st_base_test_c;
+class uvmt_clk_st_monitoring_test_c extends uvmt_clk_st_base_test_c;
    
    rand uvme_clk_st_start_and_stop_vseq_c  start_and_stop_vseq;
    
    
-   `uvm_component_utils(uvmt_clk_st_sanity_test_c)
+   `uvm_component_utils(uvmt_clk_st_monitoring_test_c)
+   
+   
+   /**
+    * Describe test_cons
+    */
+   constraint test_cons {
+      env_cfg.scoreboarding_enabled   == 1;
+      env_cfg.active_cfg .mon_enabled == 0;
+      env_cfg.passive_cfg.mon_enabled == 1;
+   }
+   
    
    /**
     * Creates start_and_stop_vseq.
     */
-   extern function new(string name="uvmt_clk_st_sanity_test", uvm_component parent=null);
+   extern function new(string name="uvmt_clk_st_monitoring_test", uvm_component parent=null);
    
    /**
     * Runs start_and_stop_vseq on vsequencer.
     */
    extern virtual task main_phase(uvm_phase phase);
    
-   /**
-    * TODO Describe uvmt_clk_st_sanity_test_c::check_phase()
-    */
-   extern virtual function void check_phase(uvm_phase phase);
-   
-endclass : uvmt_clk_st_sanity_test_c
+endclass : uvmt_clk_st_monitoring_test_c
 
 
-function uvmt_clk_st_sanity_test_c::new(string name="uvmt_clk_st_sanity_test", uvm_component parent=null);
+function uvmt_clk_st_monitoring_test_c::new(string name="uvmt_clk_st_monitoring_test", uvm_component parent=null);
    
    super.new(name, parent);
    
@@ -51,7 +57,7 @@ function uvmt_clk_st_sanity_test_c::new(string name="uvmt_clk_st_sanity_test", u
 endfunction : new
 
 
-task uvmt_clk_st_sanity_test_c::main_phase(uvm_phase phase);
+task uvmt_clk_st_monitoring_test_c::main_phase(uvm_phase phase);
    
    super.main_phase(phase);
    
@@ -64,15 +70,4 @@ task uvmt_clk_st_sanity_test_c::main_phase(uvm_phase phase);
 endtask : main_phase
 
 
-function void uvmt_clk_st_sanity_test_c::check_phase(uvm_phase phase);
-  
-   super.check_phase(phase);
-   
-   if (env_cntxt.sb_cntxt.match_count == 0) begin
-      `uvm_fatal("TEST", "Scoreboard did not see any matches during simulation")
-   end
-   
-endfunction : check_phase
-
-
-`endif // __UVMT_CLK_ST_SANITY_TEST_SV__
+`endif // __UVMT_CLK_ST_MONITORING_TEST_SV__

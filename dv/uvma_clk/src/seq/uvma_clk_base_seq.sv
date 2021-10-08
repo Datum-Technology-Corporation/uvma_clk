@@ -15,10 +15,10 @@
 
 
 /**
- * Abstract object from which all other Clock agent sequences must extend.
- * Subclasses must be run on Clock sequencer (uvma_clk_sqr_c) instance.
+ * Abstract object from which all other Clock agent sequences must extend.  Subclasses must be run on Clock sequencer
+ * (uvma_clk_sqr_c) instance.
  */
-class uvma_clk_base_seq_c extends uvm_sequence#(
+class uvma_clk_base_seq_c extends uvml_seq_c#(
    .REQ(uvma_clk_seq_item_c),
    .RSP(uvma_clk_seq_item_c)
 );

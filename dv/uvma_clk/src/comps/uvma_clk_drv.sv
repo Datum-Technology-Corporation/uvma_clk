@@ -17,7 +17,7 @@
 /**
  * Component driving a Clock virtual interface (uvma_clk_if).
  */
-class uvma_clk_drv_c extends uvm_driver#(
+class uvma_clk_drv_c extends uvml_drv_c #(
    .REQ(uvma_clk_seq_item_c),
    .RSP(uvma_clk_seq_item_c)
 );
@@ -83,6 +83,11 @@ class uvma_clk_drv_c extends uvm_driver#(
    extern task action_chg_freq(ref uvma_clk_seq_item_c req);
    
    /**
+    * TODO Describe uvma_clk_drv_c::action_chg_duty()
+    */
+   extern task action_chg_duty(ref uvma_clk_seq_item_c req);
+   
+   /**
     * TODO Describe uvma_clk_drv_c::clock_generator()
     */
    extern task clock_generator();
@@ -122,7 +127,9 @@ task uvma_clk_drv_c::run_phase(uvm_phase phase);
    
    super.run_phase(phase);
    
-   drv_vif(phase);
+   if (cfg.enabled && cfg.is_active) begin
+      drv_vif(phase);
+   end
    
 endtask : run_phase
 
@@ -130,8 +137,8 @@ endtask : run_phase
 task uvma_clk_drv_c::drv_vif(uvm_phase phase);
    
    forever begin
-      wait (cfg.enabled && cfg.is_active);
       seq_item_port.get_next_item(req);
+      `uvm_info("CLK_DV", $sformatf("Got new req:\n%s", req.sprint()), UVM_LOW)
       `uvml_hrtbt()
       
       drv_req (req);
@@ -145,9 +152,10 @@ endtask : drv_vif
 task uvma_clk_drv_c::drv_req(ref uvma_clk_seq_item_c req);
    
    case (req.action)
-      UVMA_CLK_SEQ_ITEM_ACTION_STOP            : action_stop    (req);
-      UVMA_CLK_SEQ_ITEM_ACTION_PAUSE           : action_pause   (req);
-      UVMA_CLK_SEQ_ITEM_ACTION_CHANGE_FREQUENCY: action_chg_freq(req);
+      UVMA_CLK_SEQ_ITEM_ACTION_STOP             : action_stop    (req);
+      UVMA_CLK_SEQ_ITEM_ACTION_PAUSE            : action_pause   (req);
+      UVMA_CLK_SEQ_ITEM_ACTION_CHANGE_FREQUENCY : action_chg_freq(req);
+      UVMA_CLK_SEQ_ITEM_ACTION_CHANGE_DUTY_CYCLE: action_chg_duty(req);
       
       UVMA_CLK_SEQ_ITEM_ACTION_START: begin
          action_chg_freq(req);
@@ -208,6 +216,13 @@ task uvma_clk_drv_c::action_chg_freq(ref uvma_clk_seq_item_c req);
 endtask : action_chg_freq
 
 
+task uvma_clk_drv_c::action_chg_duty(ref uvma_clk_seq_item_c req);
+   
+   cntxt.drv_duty_cycle = req.new_duty_cycle;
+   
+endtask : action_chg_duty
+
+
 task uvma_clk_drv_c::clock_generator();
    
    real  period, period_duty_cycle_on, period_duty_cycle_off;
@@ -225,14 +240,11 @@ task uvma_clk_drv_c::clock_generator();
          else if (cntxt.vif.clk === 1'b1) begin
             cntxt.vif.clk = 1'b0;
          end
-         else begin
-            `uvm_error("CLK_DRV", $sformatf("Unexpected clk value (%h), setting to 0", cntxt.vif.clk))            cntxt.vif.clk = 1'b0;
-         end
       end
       
       // We re-calculate each time because the frequency can change at any moment via a sequence item
       period = cntxt.drv_frequency / 10_000.0; // Period is in ps and frequency is in Hz so we cheat
-      period_duty_cycle_on  = period * $itor(cfg.drv_duty_cycle)/100.0;
+      period_duty_cycle_on  = period * $itor(cntxt.drv_duty_cycle)/100.0;
       period_duty_cycle_off = period - period_duty_cycle_on;
       
       if (cntxt.vif.clk === 1'b1) begin

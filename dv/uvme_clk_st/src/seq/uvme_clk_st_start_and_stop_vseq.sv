@@ -62,23 +62,29 @@ task uvme_clk_st_start_and_stop_vseq_c::body();
    
    fork
        begin
-         `uvm_info("VSEQ", $sformatf("Starting clock with frequency %0d Hz", clk_frequency), UVM_LOW)
-         `uvm_do_with (start_clk, {
+         `uvm_info("VSEQ", $sformatf("Starting clock with frequency of %0d MHz", clk_frequency/1_000_000), UVM_LOW)
+         `uvm_create_on(start_clk, p_sequencer.active_sequencer)
+         `uvm_rand_send_with (start_clk, {
             action        == UVMA_CLK_SEQ_ITEM_ACTION_START;
             new_frequency == clk_frequency;
          })
       end
       
       begin
-         wait (cntxt.passive_cntxt.current_state == UVMA_CLK_STATE_LOCKED);
+         if (cfg.passive_cfg.mon_enabled) begin
+            wait (cntxt.passive_cntxt.current_state == UVMA_CLK_STATE_LOCKED);
+         end
       end
    join
    
-   `uvm_info("VSEQ", $sformatf("Passive clk agent is now locked, waiting %t before stopping clock", (clock_gen_duration * 1ps)), UVM_LOW)
+   if (cfg.passive_cfg.mon_enabled) begin
+      `uvm_info("VSEQ", $sformatf("Passive clk agent is now locked, waiting %t before stopping clock", (clock_gen_duration * 1ps)), UVM_LOW)
+   end
    #(clock_gen_duration * 1ps);
    
    `uvm_info("VSEQ", "Stopping clock", UVM_LOW)
-   `uvm_do_with(stop_clk, {
+   `uvm_create_on(stop_clk, p_sequencer.active_sequencer)
+   `uvm_rand_send_with(stop_clk, {
       action == UVMA_CLK_SEQ_ITEM_ACTION_STOP;
    })
    

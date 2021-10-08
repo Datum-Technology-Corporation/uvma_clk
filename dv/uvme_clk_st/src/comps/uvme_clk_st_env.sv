@@ -15,10 +15,9 @@
 
 
 /**
- * Top-level component that encapsulates, builds and connects all other
- * Clock environment components.
+ * Top-level component that encapsulates, builds and connects all other Clocking Agent Self-Test Environment components.
  */
-class uvme_clk_st_env_c extends uvm_env;
+class uvme_clk_st_env_c extends uvml_env_c;
    
    // Objects
    uvme_clk_st_cfg_c    cfg;

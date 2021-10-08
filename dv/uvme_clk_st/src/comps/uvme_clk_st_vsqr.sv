@@ -15,10 +15,9 @@
 
 
 /**
- * Component on which all Clock VIP Self-Test
- * virtual sequences are run.
+ * Component on which all Clock VIP Self-Test virtual sequences are run.
  */
-class uvme_clk_st_vsqr_c extends uvm_sequencer#(
+class uvme_clk_st_vsqr_c extends uvml_vsqr_c#(
    .REQ(uvm_sequence_item),
    .RSP(uvm_sequence_item)
 );

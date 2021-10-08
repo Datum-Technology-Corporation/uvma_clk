@@ -18,7 +18,7 @@
  * Abstract component from which all other Clock test cases must ultimately extend.
  * Subclasses must provide stimulus via the virtual sequencer by implementing UVM runtime phases.
  */
-class uvmt_clk_st_base_test_c extends uvm_test;
+class uvmt_clk_st_base_test_c extends uvml_test_c;
    
    // Objects
    rand uvmt_clk_st_test_cfg_c  test_cfg ;

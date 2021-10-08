@@ -19,7 +19,7 @@
  * Does not generate any sequence items of its own. Subclasses must be run on
  * Clock Virtual Sequencer (uvme_clk_st_vsqr_c) instance.
  */
-class uvme_clk_st_base_vseq_c extends uvm_sequence#(
+class uvme_clk_st_base_vseq_c extends uvml_vseq_c#(
    .REQ(uvm_sequence_item),
    .RSP(uvm_sequence_item)
 );

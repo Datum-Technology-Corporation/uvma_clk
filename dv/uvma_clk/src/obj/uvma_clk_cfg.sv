@@ -15,24 +15,23 @@
 
 
 /**
- * Object encapsulating all parameters for creating, connecting and running all
- * Clock agent (uvma_clk_agent_c) components.
+ * Object encapsulating all parameters for creating, connecting and running all Clocking agent (uvma_clk_agent_c)
+ * components.
  */
-class uvma_clk_cfg_c extends uvm_object;
+class uvma_clk_cfg_c extends uvml_cfg_c;
    
    // Generic options
-   rand bit                      enabled;
-   rand uvm_active_passive_enum  is_active;
-   rand uvm_sequencer_arb_mode   sqr_arb_mode;
-   rand bit                      cov_model_enabled;
-   rand bit                      trn_log_enabled;
+   rand bit                      enabled          ; ///< 
+   rand uvm_active_passive_enum  is_active        ; ///< 
+   rand uvm_sequencer_arb_mode   sqr_arb_mode     ; ///< 
+   rand bit                      cov_model_enabled; ///< 
+   rand bit                      trn_log_enabled  ; ///< 
    
    // Configuration
-   rand bit           mon_enabled;
-   rand int unsigned  drv_duty_cycle;
-   rand int unsigned  mon_lock_cycle_threshold;
-   rand int unsigned  mon_sync_missed_edges_threshold;
-   rand int unsigned  mon_tolerance;                   ///< Measured in percentage
+   rand bit           mon_enabled                    ; ///< 
+   rand int unsigned  mon_lock_cycle_threshold       ; ///< 
+   rand int unsigned  mon_sync_missed_edges_threshold; ///< 
+   rand int unsigned  mon_tolerance                  ; ///< Measured in percentage
    
    
    `uvm_object_utils_begin(uvma_clk_cfg_c)
@@ -43,7 +42,6 @@ class uvma_clk_cfg_c extends uvm_object;
       `uvm_field_int (                         trn_log_enabled  , UVM_DEFAULT)
       
       `uvm_field_int(mon_enabled                    , UVM_DEFAULT          )
-      `uvm_field_int(drv_duty_cycle                 , UVM_DEFAULT + UVM_DEC)
       `uvm_field_int(mon_lock_cycle_threshold       , UVM_DEFAULT + UVM_DEC)
       `uvm_field_int(mon_sync_missed_edges_threshold, UVM_DEFAULT + UVM_DEC)
       `uvm_field_int(mon_tolerance                  , UVM_DEFAULT + UVM_DEC)
@@ -58,14 +56,12 @@ class uvma_clk_cfg_c extends uvm_object;
       soft trn_log_enabled   == 1;
       
       soft mon_enabled                     ==  1;
-      soft drv_duty_cycle                  == 50; // 50%
       soft mon_lock_cycle_threshold        == 10;
       soft mon_sync_missed_edges_threshold ==  1; 
       soft mon_tolerance                   ==  1; // 1%
    }
    
    constraint limits_cons {
-      drv_duty_cycle inside {[1:99]};
       mon_lock_cycle_threshold > 0;
       mon_sync_missed_edges_threshold > 0;
       mon_tolerance inside {[1:99]};

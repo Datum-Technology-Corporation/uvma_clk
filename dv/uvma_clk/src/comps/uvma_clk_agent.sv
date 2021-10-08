@@ -15,10 +15,10 @@
 
 
 /**
- * Top-level component that encapsulates, builds and connects all others.
- * Capable of driving/monitoring Clock interface.
+ * Top-level component that encapsulates, builds and connects all others.  Capable of driving/monitoring Clock
+ * interface.
  */
-class uvma_clk_agent_c extends uvm_agent;
+class uvma_clk_agent_c extends uvml_agent_c;
    
    // Objects
    uvma_clk_cfg_c    cfg;

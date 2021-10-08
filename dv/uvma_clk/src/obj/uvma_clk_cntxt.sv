@@ -15,27 +15,26 @@
 
 
 /**
- * Object encapsulating all state variables for all Clock agent
- * (uvma_clk_agent_c) components.
+ * Object encapsulating all state variables for all Clock agent (uvma_clk_agent_c) components.
  */
 class uvma_clk_cntxt_c extends uvm_object;
    
-   // Handle to agent interface
-   virtual uvma_clk_if  vif;
+   virtual uvma_clk_if  vif; ///< Handle to agent interface
    
    // Integrals
-   uvma_clk_state_enum  current_state     = UVMA_CLK_STATE_NO_SYNC;
-   realtime             drv_frequency     = 0;
-   int unsigned         mon_cycle_count   = 0;
-   int unsigned         mon_missed_edges  = 0;
-   realtime             mon_frequency     = 0;
-   realtime             mon_period        = 0;
-   realtime             mon_last_pos_edge = 0;
+   uvma_clk_state_enum  current_state     ; ///< 
+   int unsigned         drv_duty_cycle    ; ///< 
+   realtime             drv_frequency     ; ///< 
+   int unsigned         mon_cycle_count   ; ///< 
+   int unsigned         mon_missed_edges  ; ///< 
+   realtime             mon_frequency     ; ///< 
+   realtime             mon_period        ; ///< 
+   realtime             mon_last_pos_edge ; ///< 
    
    // Objects
-   process    clk_gen_process;
-   uvm_event  sample_cfg_e;
-   uvm_event  sample_cntxt_e;
+   process    clk_gen_process; ///< 
+   uvm_event  sample_cfg_e   ; ///< 
+   uvm_event  sample_cntxt_e ; ///< 
    
    
    `uvm_object_utils_begin(uvma_clk_cntxt_c)
@@ -68,9 +67,16 @@ endclass : uvma_clk_cntxt_c
 function uvma_clk_cntxt_c::new(string name="uvma_clk_cntxt");
    
    super.new(name);
-   
-   sample_cfg_e   = new("sample_cfg_e"  );
-   sample_cntxt_e = new("sample_cntxt_e");
+   current_state     = UVMA_CLK_STATE_NO_SYNC;
+   drv_duty_cycle    = 50;
+   drv_frequency     =  0;
+   mon_cycle_count   =  0;
+   mon_missed_edges  =  0;
+   mon_frequency     =  0;
+   mon_period        =  0;
+   mon_last_pos_edge =  0;
+   sample_cfg_e     = new("sample_cfg_e"  );
+   sample_cntxt_e   = new("sample_cntxt_e");
    
 endfunction : new
 
@@ -78,6 +84,7 @@ endfunction : new
 function void uvma_clk_cntxt_c::reset();
    
    current_state     = UVMA_CLK_STATE_NO_SYNC;
+   drv_duty_cycle    = 50;
    drv_frequency     = 0;
    mon_cycle_count   = 0;
    mon_missed_edges  = 0;

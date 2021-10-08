@@ -15,23 +15,22 @@
 
 
 /**
- * Object encapsulating all parameters for creating, connecting and running
- * Clock VIP Self-Testing Environment (uvme_clk_st_env_c)
- * components.
+ * Object encapsulating all parameters for creating, connecting and running the Clocking Agent Self-Testing Environment
+ * (uvme_clk_st_env_c) components.
  */
-class uvme_clk_st_cfg_c extends uvm_object;
+class uvme_clk_st_cfg_c extends uvml_cfg_c;
    
    // Integrals
-   rand bit                      enabled;
-   rand uvm_active_passive_enum  is_active;
-   rand bit                      scoreboarding_enabled;
-   rand bit                      cov_model_enabled;
-   rand bit                      trn_log_enabled;
+   rand bit                      enabled              ; ///< 
+   rand uvm_active_passive_enum  is_active            ; ///< 
+   rand bit                      scoreboarding_enabled; ///< 
+   rand bit                      cov_model_enabled    ; ///< 
+   rand bit                      trn_log_enabled      ; ///< 
    
    // Objects
-   rand uvma_clk_cfg_c  active_cfg;
-   rand uvma_clk_cfg_c  passive_cfg;
-   rand uvml_sb_cfg_c   sb_cfg;
+   rand uvma_clk_cfg_c  active_cfg ; ///< 
+   rand uvma_clk_cfg_c  passive_cfg; ///< 
+   rand uvml_sb_cfg_c   sb_cfg     ; ///< 
    
    
    `uvm_object_utils_begin(uvme_clk_st_cfg_c)
@@ -60,10 +59,18 @@ class uvme_clk_st_cfg_c extends uvm_object;
          active_cfg .enabled == 1;
          passive_cfg.enabled == 1;
       }
+      else {
+         active_cfg .enabled == 0;
+         passive_cfg.enabled == 0;
+      }
       
       if (is_active == UVM_ACTIVE) {
-         active_cfg .is_active == UVM_ACTIVE;
-         passive_cfg.is_active == UVM_ACTIVE;
+         active_cfg .is_active == UVM_ACTIVE ;
+         passive_cfg.is_active == UVM_PASSIVE;
+      }
+      else {
+         active_cfg .is_active == UVM_PASSIVE;
+         passive_cfg.is_active == UVM_PASSIVE;
       }
       
       if (trn_log_enabled) {
@@ -82,7 +89,6 @@ class uvme_clk_st_cfg_c extends uvm_object;
    }
    
    constraint sync_agent_cfg_cons {
-      active_cfg.drv_duty_cycle                  == passive_cfg.drv_duty_cycle                 ;
       active_cfg.mon_lock_cycle_threshold        == passive_cfg.mon_lock_cycle_threshold       ;
       active_cfg.mon_sync_missed_edges_threshold == passive_cfg.mon_sync_missed_edges_threshold;
       active_cfg.mon_tolerance                   == passive_cfg.mon_tolerance                  ;

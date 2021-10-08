@@ -15,10 +15,9 @@
 
 
 /**
- * Component running Clock sequences extending uvma_clk_seq_base_c.
- * Provides sequence items for uvma_clk_drv_c.
+ * Component running Clock sequences extending uvma_clk_seq_base_c.  Provides sequence items for uvma_clk_drv_c.
  */
-class uvma_clk_sqr_c extends uvm_sequencer#(
+class uvma_clk_sqr_c extends uvml_sqr_c#(
    .REQ(uvma_clk_seq_item_c),
    .RSP(uvma_clk_seq_item_c)
 );

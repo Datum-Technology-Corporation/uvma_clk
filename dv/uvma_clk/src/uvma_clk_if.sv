@@ -15,11 +15,11 @@
 
 
 /**
- * Encapsulates all signals and clocking of Clock interface. Used by
- * monitor (uvma_clk_mon_c) and driver (uvma_clk_drv_c).
+ * Encapsulates all signals and clocking of Clock interface. Used by monitor (uvma_clk_mon_c) and driver
+ * (uvma_clk_drv_c).
  * 
- * Provides equivalent implementation of uvma_clk_drv_c::clock_generator() for
- * possible use in emulation, or simply as a 'lighter' clock generator.
+ * Provides equivalent implementation of uvma_clk_drv_c::clock_generator() for possible use in emulation, or simply
+ * as a 'lighter' clock generator.
  */
 interface uvma_clk_if();
    

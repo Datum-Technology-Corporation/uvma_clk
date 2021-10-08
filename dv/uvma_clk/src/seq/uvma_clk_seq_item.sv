@@ -19,9 +19,10 @@
  */
 class uvma_clk_seq_item_c extends uvml_seq_item_c;
    
-   rand uvma_clk_seq_item_action_enum      action;
-   rand uvma_clk_seq_item_stop_value_enum  stop_value;
-   rand int unsigned                       new_frequency;
+   rand uvma_clk_seq_item_action_enum      action        ; ///< 
+   rand uvma_clk_seq_item_stop_value_enum  stop_value    ; ///< 
+   rand int unsigned                       new_frequency ; ///< 
+   rand int unsigned                       new_duty_cycle; ///< 
    
    
    `uvm_object_utils_begin(uvma_clk_seq_item_c)
@@ -39,6 +40,7 @@ class uvma_clk_seq_item_c extends uvml_seq_item_c;
       if (action != UVMA_CLK_SEQ_ITEM_ACTION_STOP) {
          stop_value == UVMA_CLK_SEQ_ITEM_STOP_VALUE_SAME;
       }
+      new_duty_cycle inside {[1:99]};
    }
    
    

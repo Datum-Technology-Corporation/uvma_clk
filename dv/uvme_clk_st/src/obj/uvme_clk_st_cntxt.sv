@@ -15,10 +15,9 @@
 
 
 /**
- * Object encapsulating all state variables for Clock VIP
- * Self-Testing environment (uvme_clk_st_env_c) components.
+ * Object encapsulating all state variables for Clock Agent Self-Testing environment (uvme_clk_st_env_c) components.
  */
-class uvme_clk_st_cntxt_c extends uvm_object;
+class uvme_clk_st_cntxt_c extends uvml_cntxt_c;
    
    // Agent context handles
    uvma_clk_cntxt_c  active_cntxt;

@@ -49,7 +49,8 @@ package uvmt_clk_st_pkg;
    // Base test
    `include "uvmt_clk_st_test_cfg.sv"
    `include "uvmt_clk_st_base_test.sv"
-   `include "uvmt_clk_st_sanity_test.sv"
+   `include "uvmt_clk_st_active_test.sv"
+   `include "uvmt_clk_st_monitoring_test.sv"
    
 endpackage : uvmt_clk_st_pkg
 

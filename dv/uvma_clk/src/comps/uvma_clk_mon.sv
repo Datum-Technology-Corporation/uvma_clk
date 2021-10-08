@@ -18,7 +18,7 @@
  * Component sampling transactions from a Clock virtual interface (uvma_clk_if).
  * WARNING This code has not been tested
  */
-class uvma_clk_mon_c extends uvm_monitor;
+class uvma_clk_mon_c extends uvml_mon_c;
    
    // Objects
    uvma_clk_cfg_c    cfg  ; ///< 
@@ -53,7 +53,7 @@ class uvma_clk_mon_c extends uvm_monitor;
    /**
     * TODO Describe uvma_clk_mon_c::monitor_clk()
     */
-   extern task monitor_clk(uvm_phase phase);
+   extern task monitor_clk();
    
    /**
     * TODO Describe uvma_clk_mon_c::monitor_vif()
@@ -113,27 +113,18 @@ task uvma_clk_mon_c::run_phase(uvm_phase phase);
    
    super.run_phase(phase);
    
-   monitor_clk(phase);
+   if (cfg.enabled && cfg.mon_enabled) begin
+      monitor_clk();
+   end
    
 endtask : run_phase
 
 
-task uvma_clk_mon_c::monitor_clk(uvm_phase phase);
+task uvma_clk_mon_c::monitor_clk();
    
    forever begin
-      wait (cfg.enabled && cfg.mon_enabled);
-      
-      fork
-         begin
-            monitor_vif  ();
-            sync_lock_fsm();
-         end
-         
-         begin
-            wait (!cfg.enabled || !cfg.mon_enabled);
-         end
-      join_any
-      disable fork;
+      monitor_vif  ();
+      sync_lock_fsm();
    end
    
 endtask : monitor_clk
@@ -201,18 +192,16 @@ task uvma_clk_mon_c::wait_for_first_cycle();
    realtime  first_edge;
    
    do begin
-      wait ((cntxt.vif.clk === 1'b1) || (cntxt.vif.clk === 1'b0));
-      if (cntxt.vif.clk === 1'b0) begin
-         wait (cntxt.vif.clk === 1'b1);
-         first_edge = $realtime();
-         wait (cntxt.vif.clk === 1'b0);
-         wait (cntxt.vif.clk === 1'b1);
-         
-         saw_first_cycle = 1;
-         cntxt.mon_cycle_count++;
-         cntxt.mon_period    = $realtime() - first_edge;
-         cntxt.mon_frequency = 1.00/cntxt.mon_period;
-      end
+      wait (cntxt.vif.clk === 1'b0);
+      wait (cntxt.vif.clk === 1'b1);
+      first_edge = $realtime();
+      wait (cntxt.vif.clk === 1'b0);
+      wait (cntxt.vif.clk === 1'b1);
+      
+      saw_first_cycle = 1;
+      cntxt.mon_cycle_count++;
+      cntxt.mon_period    = $realtime() - first_edge;
+      cntxt.mon_frequency = 1.00/cntxt.mon_period;
    end while (!saw_first_cycle);
    
 endtask : wait_for_first_cycle

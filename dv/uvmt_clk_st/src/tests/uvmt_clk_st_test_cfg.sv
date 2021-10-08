@@ -15,10 +15,9 @@
 
 
 /**
- * Object encapsulating configuration parameters common to most if not all tests
- * extending from uvmt_clk_st_base_test_c.
+ * Object encapsulating configuration parameters common to most if not all tests extending from uvmt_clk_st_base_test_c.
  */
-class uvmt_clk_st_test_cfg_c extends uvm_object;
+class uvmt_clk_st_test_cfg_c extends uvml_test_cfg_c;
    
    // Knobs
    rand int unsigned  startup_timeout   ; // Specified in nanoseconds (ns)

@@ -19,5 +19,5 @@ cat ./README.md
 source ./setup_terminal.sh
 export VIVADO=/path/to/vivado/install
 dvm --help
-clear && dvm all uvmt_clk_st -t sanity -s 1 -w
+clear && dvm all uvmt_clk_st -t active -s 1 -w
 ```

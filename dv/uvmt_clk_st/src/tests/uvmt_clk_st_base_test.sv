@@ -15,10 +15,8 @@
 
 
 /**
- * Abstract component from which all other Clock test cases must
- * ultimately extend.
- * Subclasses must provide stimulus via the virtual sequencer by implementing
- * UVM runtime phases.
+ * Abstract component from which all other Clock test cases must ultimately extend.
+ * Subclasses must provide stimulus via the virtual sequencer by implementing UVM runtime phases.
  */
 class uvmt_clk_st_base_test_c extends uvm_test;
    
@@ -72,12 +70,6 @@ class uvmt_clk_st_base_test_c extends uvm_test;
     * 2. Add register callback (reg_cbs) to all registers & fields.
     */
    extern virtual function void connect_phase(uvm_phase phase);
-   
-   /**
-    * 1. Triggers the start of clock generation via start_clk()
-    * 2. Starts the simulation timeout via simulation_timeout()
-    */
-   extern virtual task run_phase(uvm_phase phase);
    
    /**
     * Prints out start of phase banners.
@@ -138,11 +130,6 @@ class uvmt_clk_st_base_test_c extends uvm_test;
     */
    extern function void print_banner(string text);
    
-   /**
-    * Fatals out after simulation_timeout has elapsed.
-    */
-   extern task simulation_timeout();
-   
 endclass : uvmt_clk_st_base_test_c
 
 
@@ -179,15 +166,6 @@ function void uvmt_clk_st_base_test_c::connect_phase(uvm_phase phase);
    vsequencer = env.vsequencer;
    
 endfunction : connect_phase
-
-
-task uvmt_clk_st_base_test_c::run_phase(uvm_phase phase);
-   
-   super.run_phase(phase);
-   
-   simulation_timeout();
-   
-endtask : run_phase
 
 
 function void uvmt_clk_st_base_test_c::phase_started(uvm_phase phase);
@@ -236,6 +214,7 @@ function void uvmt_clk_st_base_test_c::cfg_hrtbt_monitor();
    
    `uvml_hrtbt_set_cfg(startup_timeout , test_cfg.startup_timeout)
    `uvml_hrtbt_set_cfg(heartbeat_period, test_cfg.heartbeat_period)
+   `uvml_watchdog_set_cfg(timeout, test_cfg.simulation_timeout)
    
 endfunction : cfg_hrtbt_monitor
 
@@ -283,18 +262,6 @@ function void uvmt_clk_st_base_test_c::print_banner(string text);
    $display("*******************************************************************************");
    
 endfunction : print_banner
-
-
-task uvmt_clk_st_base_test_c::simulation_timeout();
-   
-   fork
-      begin
-         #(test_cfg.simulation_timeout * 1ns);
-         `uvm_fatal("TIMEOUT", $sformatf("Global timeout after %0dns. Heartbeat list:\n%s", test_cfg.simulation_timeout, uvml_default_hrtbt.print_comp_names()))
-      end
-   join_none
-   
-endtask : simulation_timeout
 
 
 `endif // __UVMT_CLK_ST_BASE_TEST_SV__

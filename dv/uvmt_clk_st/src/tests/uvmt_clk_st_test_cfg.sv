@@ -33,9 +33,9 @@ class uvmt_clk_st_test_cfg_c extends uvm_object;
    
    
    constraint defaults_cons {
-      soft startup_timeout    == uvmt_clk_st_default_startup_timeout   ;
-      soft heartbeat_period   == uvmt_clk_st_default_heartbeat_period  ;
-      soft simulation_timeout == uvmt_clk_st_default_simulation_timeout;
+      /*soft*/ startup_timeout    == uvmt_clk_st_default_startup_timeout   ;
+      /*soft*/ heartbeat_period   == uvmt_clk_st_default_heartbeat_period  ;
+      /*soft*/ simulation_timeout == uvmt_clk_st_default_simulation_timeout;
    }
    
    

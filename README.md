@@ -1,7 +1,6 @@
 # About
-Moore.io UVM Clocking Agent
-
 ## [Home Page](https://datum-technology-corporation.github.io/uvma_clk/)
+The Moore.io UVM Clocking Agent is a simple and vital element to any UVM test bench.  Both for driving and monitoring purposes.
 
 ## IP
 * DV

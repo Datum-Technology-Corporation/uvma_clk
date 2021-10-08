@@ -1,10 +1,10 @@
 # About
-The Moore.io UVM Clocking Agent is a critical component to all UVM test benches, including the clock monitoring capabilities.
+The Moore.io UVM Clocking Agent is a simple and vital element to any UVM test bench.  Both for driving and monitoring purposes.  This project consists of the agent (`uvma_clk_pkg`), the self-testing UVM environment (`uvme_clk_st_pkg`) and the test bench (`uvmt_clk_st_pkg`) to verify the agent against itself.
 
 # IP
 * [Download latest release (.tgz)](Todo)
 * [View latest documentation](Todo)
-* [Browse code](https://github.com/Datum-Technology-Corporation/uvma_clk)
+* [Browse code](https://github.com/Datum-Technology-Corporation/uvma_clk/tree/main/dv/uvma_clk)
 
 # Metrics
 ## Stability

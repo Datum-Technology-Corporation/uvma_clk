@@ -1,5 +1,5 @@
 # About
-The Moore.io UVM Reset Agent is a critical component to all UVM test benches, including the clock monitoring capabilities.
+The Moore.io UVM Clocking Agent is a critical component to all UVM test benches, including the clock monitoring capabilities.
 
 # IP
 * [Download latest release (.tgz)](Todo)

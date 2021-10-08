@@ -13,11 +13,11 @@ The Moore.io UVM Clocking Agent is a simple and vital element to any UVM test be
 
 # Simulation
 ```
-export VIVADO=/path/to/vivado/install
 cd ./sim
 cat ./README.md
 ./setup_project.py
 source ./setup_terminal.sh
+export VIVADO=/path/to/vivado/install
 dvm --help
 clear && dvm all uvmt_clk_st -t sanity -s 1 -w
 ```

@@ -28,9 +28,9 @@ class uvme_clk_st_cfg_c extends uvml_cfg_c;
    rand bit                      trn_log_enabled      ; ///< 
    
    // Objects
-   rand uvma_clk_cfg_c  active_cfg ; ///< 
-   rand uvma_clk_cfg_c  passive_cfg; ///< 
-   rand uvml_sb_cfg_c   sb_cfg     ; ///< 
+   rand uvma_clk_cfg_c         active_cfg ; ///< 
+   rand uvma_clk_cfg_c         passive_cfg; ///< 
+   rand uvml_sb_simplex_cfg_c  sb_cfg     ; ///< 
    
    
    `uvm_object_utils_begin(uvme_clk_st_cfg_c)
@@ -107,9 +107,9 @@ function uvme_clk_st_cfg_c::new(string name="uvme_clk_st_cfg");
    
    super.new(name);
    
-   active_cfg  = uvma_clk_cfg_c::type_id::create("active_cfg" );
-   passive_cfg = uvma_clk_cfg_c::type_id::create("passive_cfg");
-   sb_cfg      = uvml_sb_cfg_c ::type_id::create("sb_cfg"     );
+   active_cfg  = uvma_clk_cfg_c        ::type_id::create("active_cfg" );
+   passive_cfg = uvma_clk_cfg_c        ::type_id::create("passive_cfg");
+   sb_cfg      = uvml_sb_simplex_cfg_c ::type_id::create("sb_cfg"     );
    
 endfunction : new
 

@@ -1,25 +1,39 @@
-# About
+# Home Page
+
+## [Get Latest Release](TODO)
+### [View Documentation online](TODO)
+
+----------------
+
+## About
 The Moore.io UVM Clocking Agent is a simple and vital element to any UVM test bench.  Both for driving and monitoring purposes.  This project consists of the agent (`uvma_clk_pkg`), the self-testing UVM environment (`uvme_clk_st_pkg`) and the test bench (`uvmt_clk_st_pkg`) to verify the agent against itself.
 
-# IP
-* [Download latest release (.tgz)](Todo)
-* [View latest documentation](Todo)
-* [Browse code](https://github.com/Datum-Technology-Corporation/uvma_clk/tree/main/dv/uvma_clk)
 
-# Metrics
-## Stability
-Todo
+## Downloads
 
-## Coverage
-Todo
+| Latest Release (v1.0 Beta 0) | Stable (Nightly) | Stable (Weekly) |
+| --------------------- | ---------------- | --------------- |
+| [Source Code](TODO) | [Source Code](TODO) | [Source Code](TODO) |
+| [Documentation](TODO) | [Documentation](TODO) | [Documentation](TODO) |
 
-# Management
-* [Issues](https://github.com/Datum-Technology-Corporation/uvma_clk/issues)
-* [Wiki](https://github.com/Datum-Technology-Corporation/uvma_clk/wiki)
-* [Discussions](https://github.com/Datum-Technology-Corporation/uvma_clk/discussions)
-* [Projects](https://github.com/Datum-Technology-Corporation/uvma_clk/projects)
-> * [uvma_clk](https://github.com/Datum-Technology-Corporation/uvma_clk/projects/1)
-> * [uvme_clk_st](https://github.com/Datum-Technology-Corporation/uvma_clk/projects/2)
-> * [uvmt_clk_st](https://github.com/Datum-Technology-Corporation/uvma_clk/projects/3)
-* Regressions
-> * Todo
+> **[View All Releases](TODO)**
+
+
+## Management
+
+| **[Issues](https://github.com/Datum-Technology-Corporation/uvma_clk/issues)** | **[Discussions](https://github.com/Datum-Technology-Corporation/uvma_clk/discussions)** |
+| **[Projects](https://github.com/Datum-Technology-Corporation/uvma_clk/projects)** | **[Wiki](https://github.com/Datum-Technology-Corporation/uvma_clk/wiki)** |
+
+
+## Metrics
+
+| Latest Release (v1.0 Beta 0) | Stable (Nightly) | Stable (Weekly) |
+| --------------------- | ---------------- | --------------- |
+| [Functional Coverage Report](TODO) | [Functional Coverage Report](TODO) | [Functional Coverage Report](TODO) |
+| [Release Regression Test Report](TODO) | [Regression Test Report](TODO) | [Regression Test Report](TODO) |
+
+----------------
+
+## News
+### 2021/10/22 - Hello, World!
+The Moore.io Core Libraries are being brought online for the very first time. Watch this space in the near future!

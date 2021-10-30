@@ -22,7 +22,7 @@ The [Moore.io](https://www.mooreio.com) UVM Clocking Agent is a simple and vital
 | [Source Code](https://mooreio.com/packages/uvma_clk.tgz) | Source Code (Coming Soon) | Source Code (Coming Soon) |
 | Documentation (Coming Soon) | Documentation (Coming Soon) | Documentation (Coming Soon) |
 
-> **[View All Releases](Coming Soon)**
+> **[View All Releases](releases.md)**
 
 
 

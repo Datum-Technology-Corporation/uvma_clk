@@ -14,7 +14,7 @@
 # Launched from uvml project sim dir
 ./setup_project.py
 source ./setup_terminal.sh
-../tools/.imports/mio/mio.py cpel uvmt_clk_st
-../tools/.imports/mio/mio.py sim uvmt_clk_st -t active -s 1 -c
-../tools/.imports/mio/mio.py results uvmt_clk_st results
-#../tools/.imports/mio/mio.py cov uvmt_clk_st
+../tools/.imports/mio/src/mio.py cpel uvmt_clk_st
+../tools/.imports/mio/src/mio.py sim uvmt_clk_st -t active -s 1 -c
+../tools/.imports/mio/src/mio.py results uvmt_clk_st results
+#../tools/.imports/mio/src/mio.py cov uvmt_clk_st

@@ -1,7 +1,7 @@
 # Home Page
 
 ## [Get Latest Release](https://mooreio.com/packages/uvma_clk.tgz)
-### View Documentation online (https://mooreio.com/packages/uvma_clk/dox_out/)
+### [View Documentation online](https://mooreio.com/packages/uvma_clk/dox_out/)
 
 ----------------
 

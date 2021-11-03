@@ -37,17 +37,17 @@ source ./setup_terminal.sh
 
 **4. Launch**
 
-All jobs for simulation are performed via `dvm`.
+All jobs for simulation are performed via `mio`.
 
 > At any time, you can invoke its built-in documentation:
 
 ```
-dvm --help
+mio --help
 ```
 
 > To run test 'active' with seed '1' and wave capture enabled:
 
 
 ```
-dvm all uvmt_clk_st -t active -s 1 -w
+mio all uvmt_clk_st -t active -s 1 -w
 ```

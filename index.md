@@ -17,7 +17,7 @@ The [Moore.io](https://www.mooreio.com) UVM Clocking Agent is a simple and vital
 
 ## Downloads
 
-| Latest Release (v1.0 Beta 0) | Stable (Nightly) | Stable (Weekly) |
+| Latest Release (v1.0 Beta 0) | Stable (Weekly) | Stable (Nightly) |
 | --------------------- | ---------------- | --------------- |
 | [Source Code](https://mooreio.com/packages/uvma_clk.tgz) | Source Code (Coming Soon) | Source Code (Coming Soon) |
 | [Documentation](https://mooreio.com/packages/uvma_clk/dox_out/) | Documentation (Coming Soon) | Documentation (Coming Soon) |

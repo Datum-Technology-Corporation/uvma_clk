@@ -16,26 +16,28 @@ ip:
   languages: ["sv"]
   simulators-supported:
     - { name: "vivado", version: "2021.1" }
+    - { name: "vivado", version: "2021.2" }
   tags: []
   copyright-holders: ["Datum Technology Corporation"]
   licenses: ["SHL-2.1"]
 
 structure:
-   scripts-paths : [ "bin"      ]
-   docs-paths    : [ "docs"     ]
-   examples-paths: [ "examples" ]
-   src-paths     : [ "src"      ]
+   scripts-path : "bin"
+   docs-path    : "docs"
+   examples-path: "examples"
+   src-path     : "src"
 
 dependencies:
-  - { type: "DV", name: "uvm"      , repo-uri: "https://github.com/Datum-Technology-Corporation/uvm.git"      , repo-branch: "main", repo-path: "dv/uvm"       }
-  - { type: "DV", name: "uvml"     , repo-uri: "https://github.com/Datum-Technology-Corporation/uvml.git"     , repo-branch: "main", repo-path: "dv/uvml"      }
-  - { type: "DV", name: "uvml_logs", repo-uri: "https://github.com/Datum-Technology-Corporation/uvml_logs.git", repo-branch: "main", repo-path: "dv/uvml_logs" }
-  - { type: "DV", name: "uvml_sb"  , repo-uri: "https://github.com/Datum-Technology-Corporation/uvml_sb.git"  , repo-branch: "main", repo-path: "dv/uvml_sb"   }
+  - { name: "uvm"      , version:  "1.2" }
+  - { name: "uvml"     , version: "~1.0" }
+  - { name: "uvml_logs", version: "~1.0" }
+  - { name: "uvml_sb"  , version: "~1.0" }
 
 hdl-src:
-  top-constructs: ["uvmt_clk_st_tb", "uvml_logs_summary"]
-  directories: [".", "tb", "tests"]
-  test-paths: ["tests"]
+  top-constructs: ["uvmt_clk_st_tb", "uvml_logs_sim_summary"]
+  directories: ["src", "src/tb", "src/tests"]
+  test-paths: ["src/tests"]
+  top-files: ["src/uvmt_clk_st_pkg.sv"]
   test-name-template: "uvmt_clk_st_{{ name }}_test_c"
   flists:
     metrics : [ "src/uvmt_clk_st_pkg.flist"      ]

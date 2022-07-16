@@ -6,9 +6,9 @@
 
 
 # Launched from uvml project sim dir
-python ./setup_project.py
-source ./setup_terminal.sh
-../tools/.imports/mio/src/__main__.py cpel uvmt_clk_st
-../tools/.imports/mio/src/__main__.py sim uvmt_clk_st -t active -s 1 -c
-../tools/.imports/mio/src/__main__.py results uvmt_clk_st results
-../tools/.imports/mio/src/__main__.py cov uvmt_clk_st
+shopt -s expand_aliases
+source ~/.bashrc
+mio cpel    uvmt_clk_st
+mio sim     uvmt_clk_st -t active -s 1 -c
+mio results uvmt_clk_st results
+mio cov     uvmt_clk_st

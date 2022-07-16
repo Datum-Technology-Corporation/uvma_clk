@@ -15,7 +15,7 @@ ip:
   block-diagram: ""
   languages: ["sv"]
   simulators-supported:
-    - { name: "vivado", version: "2021.1" }
+    - { name: "vivado", version: "2022.1" }
     - { name: "vivado", version: "2021.2" }
   tags: []
   copyright-holders: ["Datum Technology Corporation"]
@@ -32,18 +32,20 @@ dependencies:
   - { name: "uvml"     , version: "~1.0" }
   - { name: "uvml_logs", version: "~1.0" }
   - { name: "uvml_sb"  , version: "~1.0" }
+#  - { name: "uvma_clk"  , version: "^" }
+#  - { name: "uvme_clk_st"  , version: "^" }
 
 hdl-src:
-  top-constructs: ["uvmt_clk_st_tb", "uvml_logs_sim_summary"]
-  directories: ["src", "src/tb", "src/tests"]
-  test-paths: ["src/tests"]
-  top-files: ["src/uvmt_clk_st_pkg.sv"]
+  top-constructs: ["uvmt_clk_st_tb", "uvml_sim_summary"]
+  directories: [".", "tb", "tests"]
+  test-paths: ["tests"]
+  top-files: ["uvmt_clk_st_pkg.sv"]
   test-name-template: "uvmt_clk_st_{{ name }}_test_c"
-  flists:
-    metrics : [ "src/uvmt_clk_st_pkg.flist"      ]
-    riviera : [ "src/uvmt_clk_st_pkg.flist"      ]
-    questa  : [ "src/uvmt_clk_st_pkg.flist"      ]
-    vcs     : [ "src/uvmt_clk_st_pkg.flist"      ]
-    vivado  : [ "src/uvmt_clk_st_pkg.flist.xsim" ]
-    xcelium : [ "src/uvmt_clk_st_pkg.flist"      ]
+  flist:
+    metrics : "uvmt_clk_st_pkg.flist"
+    riviera : "uvmt_clk_st_pkg.flist"
+    questa  : "uvmt_clk_st_pkg.flist"
+    vcs     : "uvmt_clk_st_pkg.flist"
+    vivado  : "uvmt_clk_st_pkg.flist.xsim"
+    xcelium : "uvmt_clk_st_pkg.flist"
 

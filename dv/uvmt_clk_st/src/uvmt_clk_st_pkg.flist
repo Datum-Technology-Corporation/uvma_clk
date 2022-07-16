@@ -4,22 +4,22 @@
 
 
 // Libraries
--f ${DV_UVM_SRC_PATH}/uvm_pkg.flist
--f ${DV_UVML_SRC_PATH}/uvml_pkg.flist
--f ${DV_UVML_LOGS_SRC_PATH}/uvml_logs_pkg.flist
--f ${DV_UVML_SB_SRC_PATH}/uvml_sb_pkg.flist
+-f ${UVM_SRC_PATH}/uvm_pkg.flist
+-f ${UVML_SRC_PATH}/uvml_pkg.flist
+-f ${UVML_LOGS_SRC_PATH}/uvml_logs_pkg.flist
+-f ${UVML_SB_SRC_PATH}/uvml_sb_pkg.flist
 
 // Agents
--f ${DV_UVMA_CLK_SRC_PATH}/uvma_clk_pkg.flist
+-f ${UVMA_CLK_SRC_PATH}/uvma_clk_pkg.flist
 
 // Environments
--f ${DV_UVME_CLK_ST_SRC_PATH}/uvme_clk_st_pkg.flist
+-f ${UVME_CLK_ST_SRC_PATH}/uvme_clk_st_pkg.flist
 
 // Clock test bench directories
-+incdir+${DV_UVMT_CLK_ST_SRC_PATH}
-+incdir+${DV_UVMT_CLK_ST_SRC_PATH}/seq
-+incdir+${DV_UVMT_CLK_ST_SRC_PATH}/tb
-+incdir+${DV_UVMT_CLK_ST_SRC_PATH}/tests
++incdir+${UVMT_CLK_ST_SRC_PATH}
++incdir+${UVMT_CLK_ST_SRC_PATH}/seq
++incdir+${UVMT_CLK_ST_SRC_PATH}/tb
++incdir+${UVMT_CLK_ST_SRC_PATH}/tests
 
 // Clock test bench files
-${DV_UVMT_CLK_ST_SRC_PATH}/uvmt_clk_st_pkg.sv
+${UVMT_CLK_ST_SRC_PATH}/uvmt_clk_st_pkg.sv
